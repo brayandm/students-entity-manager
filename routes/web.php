@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\StudentsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('app');
-});
+Route::get('/', [StudentsController::class, 'index'])->name('main');
+
+Route::post('/', [StudentsController::class, 'store'])->name('main-add');
+
+Route::delete('/', [StudentsController::class, 'clear'])->name('main-clear');
+
