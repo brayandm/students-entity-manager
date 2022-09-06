@@ -15,3 +15,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [StudentsController::class, 'index'])->name('index');
+
+Route::get('/home', function(){
+    return view('home');
+})->name('home');
+
+Route::get('/addstudent', function(){
+    return view('addstudent');
+})->name('addstudent');
+
+
+Route::get('/listofstudents', function(){
+    return view('listofstudents');
+})->name('listofstudents');
+
