@@ -4,6 +4,10 @@
 
     <h1>List of students:</h1>
 
+    @if (session('success'))
+    <h6 class="alert alert-success"> {{ session('success')}}</h6>
+    @endif
+
     <div class="col py-1">
 
         @foreach ($students as $student)
@@ -23,6 +27,11 @@
                         @method('DELETE')
                         @csrf
                         <button class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                    <h1>&nbsp</h1>
+                    <form action="{{ route('editstudent', ['id' => $student->id]) }}">
+                        @csrf
+                        <button class="btn btn-warning btn-sm">Edit</button>
                     </form>
                 </div>
 

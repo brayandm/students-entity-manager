@@ -29,7 +29,7 @@ class StudentsController extends Controller
 
         $student->save();
 
-        return redirect()->route('addstudent')->with('success', 'Student added');
+        return redirect()->route('addstudent')->with('success', 'Student added successfully');
     }
 
     public function getlist()
@@ -52,6 +52,32 @@ class StudentsController extends Controller
 
         $student->delete();
 
-        return redirect()->route('listofstudents')->with('success', 'Student deleted');
+        return redirect()->route('listofstudents')->with('success', 'Student deleted successfully');
+    }
+
+    public function edit($id)
+    {
+        $student = Student::find($id);
+
+        return view('editstudent', ['student' => $student]);
+    }
+
+    public function editinfo(Request $request, $id)
+    {
+        $request->validate([
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'email' => 'required'
+        ]);
+
+        $student = Student::find($id);
+
+        $student->firstname = $request->firstname;
+        $student->lastname = $request->lastname;
+        $student->email = $request->email;
+
+        $student->save();
+
+        return redirect()->route('listofstudents')->with('success', 'Student edited successfully');
     }
 }

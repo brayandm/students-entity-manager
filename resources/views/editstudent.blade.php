@@ -2,41 +2,25 @@
 
 @section('content')
 
-    <h1>Add student:</h1>
+    <h1>Edit student:</h1>
 
-    @if (session('success'))
-        <h6 class="alert alert-success"> {{ session('success')}}</h6>
-    @endif
-
-    @error ('firstname')
-        <h6 class="alert alert-danger"> {{ $message }}</h6>
-    @enderror
-
-    @error ('lastname')
-        <h6 class="alert alert-danger"> {{ $message }}</h6>
-    @enderror
-
-    @error ('email')
-        <h6 class="alert alert-danger"> {{ $message }}</h6>
-    @enderror
-
-    <form action="{{ route('addstudent') }}" method="POST">
-
+    <form action="{{ route('editinfostudent', ['id' => $student->id]) }}" method="POST">
+        @method('PUT')
         @csrf
 
         <div class="mb-3">
             <label for="inputFirstname" class="form-label">Firstname:</label>
-            <input name="firstname" type="text" class="form-control" id="inputFirstname">
+            <input name="firstname" type="text" class="form-control" id="inputFirstname" value={{$student->firstname}}>
         </div>
 
         <div class="mb-3">
             <label for="inputLastname" class="form-label">Lastname:</label>
-            <input name="lastname" type="text" class="form-control" id="inputLastname">
+            <input name="lastname" type="text" class="form-control" id="inputLastname" value={{$student->lastname}}>
         </div>
 
         <div class="mb-3">
             <label for="inputEmail" class="form-label">Email:</label>
-            <input name="email" type="email" class="form-control" id="inputEmail">
+            <input name="email" type="email" class="form-control" id="inputEmail" value={{$student->email}}>
         </div>
 
         <div class="mb-3">
@@ -59,7 +43,7 @@
             <input name="score" type="number" class="form-control" id="inputScore">
         </div>
 
-        <button type="submit" class="btn btn-success">Add</button>
+        <button type="Edit" class="btn btn-warning">Edit</button>
     </form>
 
 @endsection
