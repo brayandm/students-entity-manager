@@ -4,7 +4,9 @@
 
     <h1>Add student:</h1>
 
-    <form>
+    <form action="{{ route('addstudent') }}" method="POST">
+
+        @csrf
 
         <div class="mb-3">
             <label for="inputFirstname" class="form-label">Firstname:</label>

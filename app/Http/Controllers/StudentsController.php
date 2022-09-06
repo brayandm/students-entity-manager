@@ -10,6 +10,11 @@ class StudentsController extends Controller
 {
     public function index()
     {
-        return view('app');
+        return redirect()->route('home');
+    }
+
+    public function add(Request $request)
+    {
+        return redirect()->route('home');
     }
 }

@@ -29,3 +29,5 @@ Route::get('/listofstudents', function(){
     return view('listofstudents');
 })->name('listofstudents');
 
+
+Route::post('/addstudent', [StudentsController::class, 'add'])->name('addstudent');
