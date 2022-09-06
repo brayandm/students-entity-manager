@@ -14,9 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [StudentsController::class, 'index'])->name('main');
-
-Route::post('/', [StudentsController::class, 'store'])->name('main-add');
-
-Route::delete('/', [StudentsController::class, 'clear'])->name('main-clear');
-
+Route::get('/', [StudentsController::class, 'index'])->name('index');
