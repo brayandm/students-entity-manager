@@ -4,6 +4,22 @@
 
     <h1>Add student:</h1>
 
+    @if (session('success'))
+        <h6 class="alert alert-success"> {{ session('success')}}</h6>
+    @endif
+
+    @error ('firstname')
+        <h6 class="alert alert-danger"> {{ $message }}</h6>
+    @enderror
+
+    @error ('lastname')
+        <h6 class="alert alert-danger"> {{ $message }}</h6>
+    @enderror
+
+    @error ('email')
+        <h6 class="alert alert-danger"> {{ $message }}</h6>
+    @enderror
+
     <form action="{{ route('addstudent') }}" method="POST">
 
         @csrf

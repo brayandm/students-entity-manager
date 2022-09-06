@@ -15,6 +15,27 @@ class StudentsController extends Controller
 
     public function add(Request $request)
     {
-        return redirect()->route('home');
+        $request->validate([
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'email' => 'required'
+        ]);
+
+        $student = new Student;
+
+        $student->firstname = $request->firstname;
+        $student->lastname = $request->lastname;
+        $student->email = $request->email;
+
+        $student->save();
+
+        return redirect()->route('addstudent')->with('success', 'Student added');
+    }
+
+    public function getlist()
+    {
+        $students = Student::all();
+
+        return view('/listofstudents', ['students' => $students]);
     }
 }
