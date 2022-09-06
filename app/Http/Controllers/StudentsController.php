@@ -36,6 +36,13 @@ class StudentsController extends Controller
     {
         $students = Student::all();
 
-        return view('/listofstudents', ['students' => $students]);
+        return view('listofstudents', ['students' => $students]);
+    }
+
+    public function show($id)
+    {
+        $student = Student::find($id);
+
+        return view('student', ['student' => $student]);
     }
 }

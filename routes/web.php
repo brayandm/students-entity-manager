@@ -26,4 +26,6 @@ Route::get('/addstudent', function(){
 
 Route::get('/listofstudents', [StudentsController::class, 'getlist'])->name('listofstudents');
 
+Route::get('/student/{id}', [StudentsController::class, 'show'])->name('showstudent');
+
 Route::post('/addstudent', [StudentsController::class, 'add'])->name('addstudent');
