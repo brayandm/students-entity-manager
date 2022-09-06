@@ -29,3 +29,5 @@ Route::get('/listofstudents', [StudentsController::class, 'getlist'])->name('lis
 Route::get('/student/{id}', [StudentsController::class, 'show'])->name('showstudent');
 
 Route::post('/addstudent', [StudentsController::class, 'add'])->name('addstudent');
+
+Route::delete('/deletestudent/{id}', [StudentsController::class, 'delete'])->name('deletestudent');

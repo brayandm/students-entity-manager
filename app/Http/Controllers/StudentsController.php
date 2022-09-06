@@ -45,4 +45,13 @@ class StudentsController extends Controller
 
         return view('student', ['student' => $student]);
     }
+
+    public function delete($id)
+    {
+        $student = Student::find($id);
+
+        $student->delete();
+
+        return redirect()->route('listofstudents')->with('success', 'Student deleted');
+    }
 }
