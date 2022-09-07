@@ -16,10 +16,10 @@ class StudentsController extends Controller
     public function add(Request $request)
     {
         $request->validate([
-            'firstname' => 'required',
-            'lastname' => 'required',
-            'email' => 'required',
-            'photo' => 'required'
+            'firstname' => 'required|max:120',
+            'lastname' => 'required|max:120',
+            'email' => 'required|email|max:120',
+            'photo' => 'required|image'
         ]);
 
         $student = new Student;
@@ -77,9 +77,10 @@ class StudentsController extends Controller
     public function editinfo(Request $request, $id)
     {
         $request->validate([
-            'firstname' => 'required',
-            'lastname' => 'required',
-            'email' => 'required'
+            'firstname' => 'required|max:120',
+            'lastname' => 'required|max:120',
+            'email' => 'required|email|max:120',
+            'photo' => 'Nullable|image'
         ]);
 
         $student = Student::find($id);
@@ -87,6 +88,15 @@ class StudentsController extends Controller
         $student->firstname = $request->firstname;
         $student->lastname = $request->lastname;
         $student->email = $request->email;
+
+
+        if($request->hasFile('photo'))
+        {
+            unlink(public_path().'/pictures/'.$student->photo);
+            $picture = $request->file('photo');
+            $picture->move(public_path().'/pictures/', $student->id.'.'.$picture->getClientOriginalExtension());
+            $student->photo = $student->id.'.'.$picture->getClientOriginalExtension();
+        }
 
         $student->save();
 

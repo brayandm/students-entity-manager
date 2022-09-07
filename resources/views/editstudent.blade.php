@@ -4,7 +4,17 @@
 
     <h1>Edit student:</h1>
 
-    <form action="{{ route('editinfostudent', ['id' => $student->id]) }}" method="POST">
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <form action="{{ route('editinfostudent', ['id' => $student->id]) }}" method="POST"  enctype="multipart/form-data">
         @method('PUT')
         @csrf
 
@@ -25,7 +35,7 @@
 
         <div class="mb-3">
             <label for="inputPhoto" class="form-label">Photo:</label>
-            <input name="photo" type="file" class="form-control" id="inputPhoto">
+            <input name="photo" type="file" class="form-control" id="inputPhoto" src="/pictures/{{$student->photo}}">
         </div>
 
         <div class="mb-3">

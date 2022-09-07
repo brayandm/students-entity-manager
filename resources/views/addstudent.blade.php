@@ -8,33 +8,15 @@
         <h6 class="alert alert-success"> {{ session('success')}}</h6>
     @endif
 
-    @error ('firstname')
-        <h6 class="alert alert-danger"> {{ $message }}</h6>
-    @enderror
-
-    @error ('lastname')
-        <h6 class="alert alert-danger"> {{ $message }}</h6>
-    @enderror
-
-    @error ('email')
-        <h6 class="alert alert-danger"> {{ $message }}</h6>
-    @enderror
-
-    @error ('photo')
-        <h6 class="alert alert-danger"> {{ $message }}</h6>
-    @enderror
-
-    @error ('birthdate')
-        <h6 class="alert alert-danger"> {{ $message }}</h6>
-    @enderror
-
-    @error ('address')
-        <h6 class="alert alert-danger"> {{ $message }}</h6>
-    @enderror
-
-    @error ('score')
-        <h6 class="alert alert-danger"> {{ $message }}</h6>
-    @enderror
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
     <form action="{{ route('addstudent') }}" method="POST" enctype="multipart/form-data">
 
