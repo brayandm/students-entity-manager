@@ -20,17 +20,17 @@
 
         <div class="mb-3">
             <label for="inputFirstname" class="form-label">Firstname:</label>
-            <input name="firstname" type="text" class="form-control" id="inputFirstname" value={{$student->firstname}}>
+            <input name="firstname" type="text" class="form-control" id="inputFirstname" value="{{$student->firstname}}">
         </div>
 
         <div class="mb-3">
             <label for="inputLastname" class="form-label">Lastname:</label>
-            <input name="lastname" type="text" class="form-control" id="inputLastname" value={{$student->lastname}}>
+            <input name="lastname" type="text" class="form-control" id="inputLastname" value="{{$student->lastname}}">
         </div>
 
         <div class="mb-3">
             <label for="inputEmail" class="form-label">Email:</label>
-            <input name="email" type="email" class="form-control" id="inputEmail" value={{$student->email}}>
+            <input name="email" type="email" class="form-control" id="inputEmail" value="{{$student->email}}">
         </div>
 
         <div class="mb-3">
@@ -40,17 +40,17 @@
 
         <div class="mb-3">
             <label for="inputBirthdate" class="form-label">Birthdate:</label>
-            <input name="birthdate" type="date" class="form-control" id="inputBirthdate">
+            <input name="birthdate" type="date" class="form-control" id="inputBirthdate" value="{{$student->birthdate}}">
         </div>
 
         <div class="mb-3">
             <label for="inputAddress" class="form-label">Address:</label>
-            <input name="address" type="text" class="form-control" id="inputAddress">
+            <input name="address" type="text" class="form-control" id="inputAddress" value="{{$student->address}}">
         </div>
 
         <div class="mb-3">
             <label for="inputScore" class="form-label">Score:</label>
-            <input name="score" type="number" class="form-control" id="inputScore">
+            <input name="score" type="number" step=any class="form-control" id="inputScore" value="{{$student->score}}">
         </div>
 
         <button type="Edit" class="btn btn-warning">Edit</button>

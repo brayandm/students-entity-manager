@@ -54,7 +54,7 @@
 
         <div class="mb-3">
             <label for="inputScore" class="form-label">Score:</label>
-            <input name="score" type="number" class="form-control" id="inputScore">
+            <input name="score" type="number" step=any class="form-control" id="inputScore">
         </div>
 
         <button type="submit" class="btn btn-success">Add</button>

@@ -19,7 +19,10 @@ class StudentsController extends Controller
             'firstname' => 'required|max:120',
             'lastname' => 'required|max:120',
             'email' => 'required|email|max:120',
-            'photo' => 'required|image'
+            'photo' => 'required|image',
+            'birthdate' => 'required|date',
+            'address' => 'required|max:255',
+            'score' => 'required|numeric',
         ]);
 
         $student = new Student;
@@ -27,6 +30,9 @@ class StudentsController extends Controller
         $student->firstname = $request->firstname;
         $student->lastname = $request->lastname;
         $student->email = $request->email;
+        $student->birthdate = $request->birthdate;
+        $student->address = $request->address;
+        $student->score = $request->score;
 
         $student->save();
 
@@ -80,7 +86,10 @@ class StudentsController extends Controller
             'firstname' => 'required|max:120',
             'lastname' => 'required|max:120',
             'email' => 'required|email|max:120',
-            'photo' => 'Nullable|image'
+            'photo' => 'nullable|image',
+            'birthdate' => 'required|date',
+            'address' => 'required|max:255',
+            'score' => 'required|numeric',
         ]);
 
         $student = Student::find($id);
@@ -88,7 +97,9 @@ class StudentsController extends Controller
         $student->firstname = $request->firstname;
         $student->lastname = $request->lastname;
         $student->email = $request->email;
-
+        $student->birthdate = $request->birthdate;
+        $student->address = $request->address;
+        $student->score = $request->score;
 
         if($request->hasFile('photo'))
         {
@@ -97,6 +108,8 @@ class StudentsController extends Controller
             $picture->move(public_path().'/pictures/', $student->id.'.'.$picture->getClientOriginalExtension());
             $student->photo = $student->id.'.'.$picture->getClientOriginalExtension();
         }
+
+        $student->touch();
 
         $student->save();
 
