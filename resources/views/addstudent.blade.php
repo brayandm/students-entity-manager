@@ -20,7 +20,23 @@
         <h6 class="alert alert-danger"> {{ $message }}</h6>
     @enderror
 
-    <form action="{{ route('addstudent') }}" method="POST">
+    @error ('photo')
+        <h6 class="alert alert-danger"> {{ $message }}</h6>
+    @enderror
+
+    @error ('birthdate')
+        <h6 class="alert alert-danger"> {{ $message }}</h6>
+    @enderror
+
+    @error ('address')
+        <h6 class="alert alert-danger"> {{ $message }}</h6>
+    @enderror
+
+    @error ('score')
+        <h6 class="alert alert-danger"> {{ $message }}</h6>
+    @enderror
+
+    <form action="{{ route('addstudent') }}" method="POST" enctype="multipart/form-data">
 
         @csrf
 

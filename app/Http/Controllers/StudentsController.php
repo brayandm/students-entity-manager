@@ -18,7 +18,8 @@ class StudentsController extends Controller
         $request->validate([
             'firstname' => 'required',
             'lastname' => 'required',
-            'email' => 'required'
+            'email' => 'required',
+            'photo' => 'required'
         ]);
 
         $student = new Student;
@@ -26,6 +27,15 @@ class StudentsController extends Controller
         $student->firstname = $request->firstname;
         $student->lastname = $request->lastname;
         $student->email = $request->email;
+
+        $student->save();
+
+        if($request->hasFile('photo'))
+        {
+            $picture = $request->file('photo');
+            $picture->move(public_path().'/pictures/', $student->id.'.'.$picture->getClientOriginalExtension());
+            $student->photo = $student->id.'.'.$picture->getClientOriginalExtension();
+        }
 
         $student->save();
 
@@ -49,6 +59,8 @@ class StudentsController extends Controller
     public function delete($id)
     {
         $student = Student::find($id);
+
+        unlink(public_path().'/pictures/'.$student->photo);
 
         $student->delete();
 
