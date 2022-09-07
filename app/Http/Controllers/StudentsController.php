@@ -22,7 +22,7 @@ class StudentsController extends Controller
             'photo' => 'required|image',
             'birthdate' => 'required|date',
             'address' => 'required|max:255',
-            'score' => 'required|numeric',
+            'score' => 'required|numeric|between:0,999999',
         ]);
 
         $student = new Student;
@@ -89,7 +89,7 @@ class StudentsController extends Controller
             'photo' => 'nullable|image',
             'birthdate' => 'required|date',
             'address' => 'required|max:255',
-            'score' => 'required|numeric',
+            'score' => 'required|numeric|between:0,999999',
         ]);
 
         $student = Student::find($id);

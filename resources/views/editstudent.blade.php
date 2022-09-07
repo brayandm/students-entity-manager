@@ -50,7 +50,7 @@
 
         <div class="mb-3">
             <label for="inputScore" class="form-label">Score:</label>
-            <input name="score" type="number" step=any class="form-control" id="inputScore" value="{{$student->score}}">
+            <input name="score" type="number" step=0.01 class="form-control" id="inputScore" value="{{$student->score}}">
         </div>
 
         <button type="Edit" class="btn btn-warning">Edit</button>
