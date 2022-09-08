@@ -35,3 +35,5 @@ Route::delete('/deletestudent/{id}', [StudentsController::class, 'delete'])->nam
 Route::get('/editstudent/{id}', [StudentsController::class, 'edit'])->name('editstudent');
 
 Route::put('/editinfostudent/{id}', [StudentsController::class, 'editinfo'])->name('editinfostudent');
+
+Route::get('/pictures/{photo}', [StudentsController::class, 'linkphoto'])->name('linkphoto');

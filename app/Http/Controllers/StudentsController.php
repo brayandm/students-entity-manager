@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Models\Student;
 
+use Illuminate\Support\Facades\Storage;
+
 class StudentsController extends Controller
 {
     public function index()
@@ -39,7 +41,7 @@ class StudentsController extends Controller
         if($request->hasFile('photo'))
         {
             $picture = $request->file('photo');
-            $picture->move(public_path().'/pictures/', $student->id.'.'.$picture->getClientOriginalExtension());
+            Storage::putFileAs('public/pictures', $picture, $student->id.'.'.$picture->getClientOriginalExtension());
             $student->photo = $student->id.'.'.$picture->getClientOriginalExtension();
         }
 
@@ -66,7 +68,7 @@ class StudentsController extends Controller
     {
         $student = Student::find($id);
 
-        unlink(public_path().'/pictures/'.$student->photo);
+        Storage::delete('public/pictures/'.$student->photo);
 
         $student->delete();
 
@@ -103,9 +105,9 @@ class StudentsController extends Controller
 
         if($request->hasFile('photo'))
         {
-            unlink(public_path().'/pictures/'.$student->photo);
+            Storage::delete('public/pictures/'.$student->photo);
             $picture = $request->file('photo');
-            $picture->move(public_path().'/pictures/', $student->id.'.'.$picture->getClientOriginalExtension());
+            Storage::putFileAs('public/pictures', $picture, $student->id.'.'.$picture->getClientOriginalExtension());
             $student->photo = $student->id.'.'.$picture->getClientOriginalExtension();
         }
 
@@ -114,5 +116,10 @@ class StudentsController extends Controller
         $student->save();
 
         return redirect()->route('listofstudents')->with('success', 'Student edited successfully');
+    }
+
+    public function linkphoto($photo)
+    {
+        return Storage::get('public/pictures/'.$photo);
     }
 }
